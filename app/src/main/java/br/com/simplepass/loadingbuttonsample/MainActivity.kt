@@ -7,6 +7,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import br.com.simplepass.loadingbutton.animatedDrawables.ProgressType
@@ -46,14 +47,12 @@ class MainActivity : AppCompatActivity() {
                 progressType = ProgressType.INDETERMINATE
                 startAnimation()
                 progressAnimator(this).start()
-                Handler().run {
-                    postDelayed({
+                Handler(Looper.getMainLooper()).postDelayed({
                         doneLoadingAnimation(defaultColor(context), defaultDoneImage(context.resources))
                     }, 2500)
                     postDelayed({ revertAnimation() }, 3500)
                 }
             }
-        }
 
         buttonTest7.run { setOnClickListener { morphStopRevert() } }
         buttonTest8.run { setOnClickListener { morphStopRevert(100, 1000) } }
@@ -89,21 +88,19 @@ private fun ProgressButton.morphDoneAndRevert(
 ) {
     progressType = ProgressType.INDETERMINATE
     startAnimation()
-    Handler().run {
-        postDelayed({ doneLoadingAnimation(fillColor, bitmap) }, doneTime)
-        postDelayed(::revertAnimation, revertTime)
-    }
+    Handler(Looper.getMainLooper()).postDelayed({ doneLoadingAnimation(fillColor, bitmap) }, doneTime)
+    Handler(Looper.getMainLooper()).postDelayed(::revertAnimation, revertTime)
 }
 
 private fun ProgressButton.morphAndRevert(revertTime: Long = 3000, startAnimationCallback: () -> Unit = {}) {
     startAnimation(startAnimationCallback)
-    Handler().postDelayed(::revertAnimation, revertTime)
+    Handler(Looper.getMainLooper()).postDelayed(::revertAnimation, revertTime)
 }
 
 private fun ProgressButton.morphStopRevert(stopTime: Long = 1000, revertTime: Long = 2000) {
     startAnimation()
-    Handler().postDelayed(::stopAnimation, stopTime)
-    Handler().postDelayed(::revertAnimation, revertTime)
+    Handler(Looper.getMainLooper()).postDelayed(::stopAnimation, stopTime)
+    Handler(Looper.getMainLooper()).postDelayed(::revertAnimation, revertTime)
 }
 
 private fun progressAnimator(progressButton: ProgressButton) = ValueAnimator.ofFloat(0F, 100F).apply {

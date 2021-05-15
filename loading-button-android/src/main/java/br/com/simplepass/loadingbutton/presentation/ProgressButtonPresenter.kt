@@ -3,6 +3,7 @@ package br.com.simplepass.loadingbutton.presentation
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.os.Handler
+import android.os.Looper
 import br.com.simplepass.loadingbutton.customViews.ProgressButton
 
 enum class State {
@@ -34,7 +35,7 @@ internal class ProgressButtonPresenter(private val view: ProgressButton) {
     fun morphEnd() {
         state = when (state) {
             State.WAITING_DONE -> {
-                Handler().postDelayed({ view.startRevealAnimation() }, 50)
+                Handler(Looper.getMainLooper()).postDelayed({ view.startRevealAnimation() }, 50)
                 State.DONE
             }
             State.WAITING_TO_STOP -> State.STOPPED
