@@ -1,8 +1,6 @@
 
 [![](https://jitpack.io/v/elias102/LoadingButtonAndroid.svg)](https://jitpack.io/#elias102/LoadingButtonAndroid)
 
-Hey, if you think this (or other of my projects) help you some how, please consider giving me some sponsorship: https://github.com/sponsors/leandroBorgesFerreira
-(Open source software can be quite a work haha)
 
 # Progress Button Android
 
@@ -14,7 +12,6 @@ Android Button that morphs into a loading progress bar.
   - Really simple to use.
   - Makes your app looks cooler =D
 
-You can check how this library was implemented here (Old version): https://medium.com/p/9efee6e39711/
 
 ## Contents
 
@@ -31,7 +28,44 @@ You can check how this library was implemented here (Old version): https://mediu
 
 ## Installation 
 
-    implementation 'br.com.simplepass:loading-button-android:2.2.0'
+### Step 1. Add the JitPack repository to your build file
+### Step 2. Add the dependency
+
+#### - Gradle
+##### step1:
+   Add it in your root build.gradle(Project) at the end of repositories:
+	
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+	
+##### step2:
+   Add it in your root build.gradle(Project) at the end of repositories:
+
+    dependencies {
+	        implementation 'com.github.elias102:LoadingButtonAndroid:Tag'
+	}
+	
+
+#### - Maven
+##### step1:
+	   <repositories>
+			<repository>
+			    <id>jitpack.io</id>
+			    <url>https://jitpack.io</url>
+			</repository>
+		</repositories>
+	
+##### step2:
+	   <dependency>
+	    <groupId>com.github.elias102</groupId>
+	    <artifactId>LoadingButtonAndroid</artifactId>
+	    <version>Tag</version>
+	</dependency>
+	
 
 ## How to use
 
